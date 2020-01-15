@@ -1,0 +1,16 @@
+@baseUrl = https://iwavicennadev.b2clogin.com/iwavicennadev.onmicrosoft.com
+
+# @name login
+POST {{baseUrl}}/oauth2/v2.0/token?p=b2c_1_ropc_auth HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id=c5dbc893-fd40-4da8-8003-7a6efe2edac4&scope=openid c5dbc893-fd40-4da8-8003-7a6efe2edac4 offline_access&grant_type=password&response_type=token id_token&username=testuser&password=Gaxo6313
+
+###
+
+@authToken = {{login.response.body.access_token}}
+
+# @name getWeatherforecast
+GET https://localhost:5001/weatherforecast HTTP/1.1
+Authorization: bearer {{authToken}}
+###
